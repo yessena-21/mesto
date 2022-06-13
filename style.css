@@ -1,0 +1,112 @@
+
+.profile {
+        display: grid;
+        grid-template-areas:'avatar info btn';
+        align-items: center;
+    }
+    
+    @media screen and (max-width: 1024px){
+        .profile{
+            grid-template-areas:'avatar''info''btn';
+        }
+    }
+
+    .profile__avatar {
+        grid-area: avatar;
+        max-width: 120px;
+        margin-right: 30px;
+        border-radius: 50%;
+    }
+    
+    @media screen and (max-width: 1024px){
+        .profile__avatar{
+            margin: 0 auto;
+        }
+    }
+
+.profile__info {
+    display: grid;
+    grid-area: info;
+    grid-template-areas:
+    "name edit-btn"
+    "description description";
+}
+
+.profile__name {
+font-style: normal;
+font-weight: 500;
+font-size: 42px;
+line-height: 48px;
+}
+
+.profile.description {
+          margin: 0;
+        grid-area: description;
+        color: white;
+        font-size: 18px;
+        line-height: 22px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    
+    @media screen and (max-width: 880px){
+        .profile__subtitle{
+            font-size: 14px;
+            line-height: 17px;
+            text-align: center;
+        }
+    }
+
+
+.profile__add-button{
+    grid-area: btn;
+    min-width: 150px;
+    min-height: 50px;
+    background: url("../../../images/profile/button/btn-add.svg") no-repeat center;
+    cursor: pointer;
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
+}
+
+.profile__add-button:hover{
+    opacity: 0.6;
+}
+
+
+@media screen and (max-width: 1024px){
+  .profile__add-button{
+      margin: 36px 0 0;
+      justify-self: center;
+      width: 100%;
+      max-width: 282px;
+  }
+}
+© 2022 GitHub, Inc.
+
+.photo-grid {
+    max-width: 880px;
+    margin: 51px auto 0;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+    gap: 17px;
+}
+
+.footer__copyright {
+    margin: 0;
+    color: #545454;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.footer__copyright:before{
+    content: '\00A9 2020';
+}
+
+@media screen and (max-width: 880px){
+    .footer__copyright{
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
