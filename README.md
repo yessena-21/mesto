@@ -18,7 +18,7 @@
 
  
 Посмотреть страницу и макет:
-•	Путешествия по России на Github Pages - 
+•	Проект "Место" на Github Pages - https://yessena-21.github.io/mesto/
 •	Ссылка на макет в Figma - https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1
 
 
