@@ -1,0 +1,15 @@
+.profile {
+    max-width: 880px;
+    margin: 0 auto 51px;
+    display: grid;
+    grid-template-areas: 'avatar info btn';
+    align-items: center;
+    background-color: black;
+}
+
+@media screen and (max-width: 1024px) {
+    .profile {
+        grid-template-areas: 'avatar''info''btn';
+        margin: 0 auto 36px;
+    }
+}
