@@ -1,7 +1,7 @@
 .elements__like {
     width: 21px;
     height: 19px;
-    background: url("../../../images/like.svg");
+    background: url("../../../..images/like.svg");
     background-size: contain;
     background-repeat: no-repeat;
     border: none;
@@ -9,7 +9,7 @@
     background-position: center;
     justify-content: center;
     cursor: pointer;
-    margin: auto 20px;
+    padding: 0;
 }
 
 .element__like-btn:hover {
