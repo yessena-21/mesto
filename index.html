@@ -27,48 +27,16 @@
 
     <section class="elements">
       <ul class="elements__photo-grid">
-        <li class="elements__element">
-          <img class="elements__image" src="./images/karachaevsk.jpg" alt="Руины древнего храма">
-          <div class="elements__description">
-            <h2 class="elements__title">Карачаевск</h2>
-            <button class="elements__like" type="button"></button>
-          </div>
-        </li>
-        <li class="elements__element">
-          <img class="elements__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-          <div class="elements__description">
-            <h2 class="elements__title">Эльбрус</h2>
-            <button class="elements__like" type="button"></button>
-          </div>
-        </li>
-        <li class="elements__element">
-          <img class="elements__image" src="./images/dombay.jpg" alt="Горы Домбай">
-          <div class="elements__description">
-            <h2 class="elements__title">Домбай</h2>
-            <button class="elements__like" type="button"></button>
-          </div>
-        </li>
-        <li class="elements__element">
-          <img class="elements__image" src="./images/eagl.jpg" alt="Орел">
-          <div class="elements__description">
-            <h2 class="elements__title">Орёл</h2>
-            <button class="elements__like" type="button"></button>
-          </div>
-        </li>
-        <li class="elements__element">
-          <img class="elements__image" src="./images/beaver.jpg" alt="Бобр">
-          <div class="elements__description">
-            <h2 class="elements__title">Бобруйск</h2>
-            <button class="elements__like" type="button"></button>
-          </div>
-        </li>
-        <li class="elements__element">
-          <img class="elements__image" src="./images/myshkin.jpg" alt="Мышь">
-          <div class="elements__description">
-            <h2 class="elements__title">Мышкин</h2>
-            <button class="elements__like" type="button"></button>
-          </div>
-        </li>
+        <template id="elements-template">
+          <li class="elements__element">
+            <img class="elements__image" src="" alt="">
+            <div class="elements__description">
+              <h2 class="elements__title"></h2>
+              <button class="elements__like" type="button"></button>
+            </div>
+            <button aria-label="Delete" type="button" class="elements__delete"></button>
+          </li>
+        </template>
 
       </ul>
     </section>
@@ -91,6 +59,39 @@
     </div>
 
   </div>
+
+  <div class="popup popup_edit-profile">
+    <div class="popup__container">
+      <h3 class="popup__title">Редактировать&nbsp;профиль</h3>
+      <form class="popup__form">
+        <input class="popup__field popup__field_name" type="text" name="username" value="Жак-Ив Кусто">
+        <input class="popup__field popup__field_description" type="text" name="description"
+          value="Исследователь океана">
+        <button class="popup__save-button" type="submit">Сохранить</button>
+        <button class="popup__exit-button" type="button"></button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="popup popup_add_new-element">
+    <div class="popup__container">
+      <h3 class="popup__title">Новое место</h3>
+      <form class="popup__form">
+        <input class="popup__field popup__field_title" type="text" name="name" placeholder="Название">
+        <input class="popup__field popup__field_link" type="text" name="link-to-picture"
+          placeholder="Ссылка на картинку">
+        <button type="submit" class="popup__save-button">Создать</button>
+
+        <button class="popup__exit-button" type="button"></button>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
   <script src="./scripts/script.js"></script>
 </body>
 
