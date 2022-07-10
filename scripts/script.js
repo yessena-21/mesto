@@ -35,11 +35,11 @@ function closePopup(popup) {
 }
 
 
-profileButtonEdit.addEventListener('click', function() {
-openPopup(popupEditProfile);
+profileButtonEdit.addEventListener('click', function () {
+  openPopup(popupEditProfile);
 })
-popupCloseButtonEdit.addEventListener('click', function() {
-closePopup(popupEditProfile);
+popupCloseButtonEdit.addEventListener('click', function () {
+  closePopup(popupEditProfile);
 })
 
 function formSubmitHandler(evt) {
@@ -50,13 +50,13 @@ function formSubmitHandler(evt) {
 }
 formEditProfile.addEventListener('submit', formSubmitHandler);
 
-addElementButton.addEventListener('click', function() {
+addElementButton.addEventListener('click', function () {
   openPopup(popupAddElement);
-  })
-  popupCloseButtonAdd.addEventListener('click', function() {
+})
+popupCloseButtonAdd.addEventListener('click', function () {
   closePopup(popupAddElement);
-  })
-  
+})
+
 
 const initialCards = [
   {
@@ -91,9 +91,6 @@ const renderElements = () => {
 
 renderElements()
 
-
-
-
 function addElement(element) {
   const newElement = elementTemplate.querySelector('.elements__element').cloneNode(true);
   newElement.querySelector('.elements__title').textContent = element.name;
@@ -102,41 +99,43 @@ function addElement(element) {
   const buttonLikeElement = newElement.querySelector('.elements__like');
   const buttonDeleteElement = newElement.querySelector('.elements__delete');
   const imageElement = newElement.querySelector('.elements__image');
-  
-  imageElement.addEventListener('click', function(){
+
+  imageElement.addEventListener('click', function () {
     popupImage.setAttribute('src', imageElement.src);
     popupImage.setAttribute('alt', imageElement.alt);
     popupImageName.textContent = imageElement.alt;
-  
+
     openPopup(popupImageView);
   })
-  
-  buttonLikeElement.addEventListener('click', function() {
-  
+
+  buttonLikeElement.addEventListener('click', function () {
+
     buttonLikeElement.classList.toggle('element__like_active');
   })
-  
-  buttonDeleteElement.addEventListener('click', function(evt) {
-  evt.target.closest('.elements__element').remove();
-  
+
+  buttonDeleteElement.addEventListener('click', function (evt) {
+    evt.target.closest('.elements__element').remove();
+
   })
- 
+
   list.prepend(newElement);
 }
 
 const handleSubmit = (evt) => {
   evt.preventDefault();
-  addElement({ name: titleInput.value,
-             link: linkInput.value });
-   closePopup(popupCloseButtonAdd);
+  addElement({
+    name: titleInput.value,
+    link: linkInput.value
+  });
+  closePopup(popupAddElement);
 
 }
 
 formAddElement.addEventListener('submit', handleSubmit);
 
-popupCloseButtonImage.addEventListener('click', function() {
+popupCloseButtonImage.addEventListener('click', function () {
   closePopup(popupImageView);
-  })
+})
 
 
 

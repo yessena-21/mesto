@@ -8,12 +8,11 @@
   <title>Место</title>
 </head>
 
-
 <body class="page">
   <header class="header page__header">
     <img src="images/logo.svg" alt="логотип сайта" class="header__logo">
-
   </header>
+
   <main class="content">
     <section class="profile page__profile">
       <img class="profile__avatar avatar" src="images/profile-kusto.jpg" alt="Аватар">
@@ -37,28 +36,13 @@
             <button aria-label="Delete" type="button" class="elements__delete"></button>
           </li>
         </template>
-
       </ul>
     </section>
-
   </main>
+
   <footer class="footer page__footer">
     <p class="footer__copyright">&copy;2020 Mesto Russia</p>
   </footer>
-
-  <div class="popup">
-    <div class="popup__container">
-      <h3 class="popup__title">Редактировать&nbsp;профиль</h3>
-      <form class="popup__form">
-        <input class="popup__field popup__field_name" type="text" name="username" value="Жак-Ив Кусто">
-        <input class="popup__field popup__field_description" type="text" name="description"
-          value="Исследователь океана">
-        <button class="popup__save-button" type="submit">Сохранить</button>
-        <button class="popup__exit-button" type="button"></button>
-      </form>
-    </div>
-
-  </div>
 
   <div class="popup popup_edit-profile">
     <div class="popup__container">
@@ -71,7 +55,6 @@
         <button class="popup__exit-button" type="button"></button>
       </form>
     </div>
-
   </div>
 
   <div class="popup popup_add_new-element">
@@ -83,25 +66,17 @@
           placeholder="Ссылка на картинку">
         <button type="submit" class="popup__save-button">Создать</button>
         <button class="popup__exit-button" type="button"></button>
-
-
       </form>
     </div>
   </div>
 
   <div class="popup popup_view-image">
     <div class="popup__image-container">
-      
-      <img class="popup__image">
+      <img class="popup__image" src="#" alt="">
       <p class="popup__image-name"></p>
       <button class="popup__exit-button" type="button"></button>
-</div>
-
-   
-
+    </div>
   </div>
-
-
 
   <script src="./scripts/script.js"></script>
 </body>
