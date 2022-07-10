@@ -15,9 +15,14 @@ const formAddElement = popupAddElement.querySelector('.popup__form');
 const titleInput = document.querySelector('.popup__field_title');
 const linkInput = document.querySelector('.popup__field_link');
 const elementTemplate = document.querySelector('#elements-template').content;
-const list = document.querySelector(".elements__photo-grid");
+const list = document.querySelector('.elements__photo-grid');
 
 
+const popupImageView = document.querySelector('.popup_view-image');
+const popupImage = document.querySelector('.popup__image');
+const popupImageName = document.querySelector('.popup__image-name');
+const imageBox = document.querySelector('.popup__image-container');
+const popupCloseButtonImage = popupImageView.querySelector('.popup__exit-button');
 
 
 
@@ -43,7 +48,7 @@ function formSubmitHandler(evt) {
   profileDescription.textContent = jobInput.value;
   closePopup(popupEditProfile);
 }
-
+formEditProfile.addEventListener('submit', formSubmitHandler);
 
 addElementButton.addEventListener('click', function() {
   openPopup(popupAddElement);
@@ -52,12 +57,6 @@ addElementButton.addEventListener('click', function() {
   closePopup(popupAddElement);
   })
   
-
-formEditProfile.addEventListener('submit', formSubmitHandler);
-
-
-
-
 
 const initialCards = [
   {
@@ -92,15 +91,36 @@ const renderElements = () => {
 
 renderElements()
 
-function addElement(element) {
 
-  
+
+
+function addElement(element) {
   const newElement = elementTemplate.querySelector('.elements__element').cloneNode(true);
   newElement.querySelector('.elements__title').textContent = element.name;
   newElement.querySelector('.elements__image').setAttribute('src', element.link);
   newElement.querySelector('.elements__image').setAttribute('alt', element.name);
-
-  setEventListeners(newElement);
+  const buttonLikeElement = newElement.querySelector('.elements__like');
+  const buttonDeleteElement = newElement.querySelector('.elements__delete');
+  const imageElement = newElement.querySelector('.elements__image');
+  
+  imageElement.addEventListener('click', function(){
+    popupImage.setAttribute('src', imageElement.src);
+    popupImage.setAttribute('alt', imageElement.alt);
+    popupImageName.textContent = imageElement.alt;
+  
+    openPopup(popupImageView);
+  })
+  
+  buttonLikeElement.addEventListener('click', function() {
+  
+    buttonLikeElement.classList.toggle('element__like_active');
+  })
+  
+  buttonDeleteElement.addEventListener('click', function(evt) {
+  evt.target.closest('.elements__element').remove();
+  
+  })
+ 
   list.prepend(newElement);
 }
 
@@ -114,32 +134,13 @@ const handleSubmit = (evt) => {
 
 formAddElement.addEventListener('submit', handleSubmit);
 
-
-
-function setEventListeners(newElement) {
-  
-const buttonLikeElement = newElement.querySelector('.elements__like');
-const buttonDeleteElement = newElement.querySelector('.elements__delete');
-
-buttonLikeElement.addEventListener('click', function() {
-
-  buttonLikeElement.classList.toggle('element__like_active');
-})
-
-buttonDeleteElement.addEventListener('click', function(evt) {
-evt.target.closest('.elements__element').remove();
-
-})
-}
+popupCloseButtonImage.addEventListener('click', function() {
+  closePopup(popupImageView);
+  })
 
 
 
 
-
-/*  const likeButtons = document.querySelectorAll('.elements__like');
-  likeButtons.addEventListener('click', function(evt) {
-    evt.target.closest('.elements__like').classList.add('cards__like_active');
-  }); */
 
 
 
