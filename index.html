@@ -48,9 +48,8 @@
     <div class="popup__container">
       <h3 class="popup__title">Редактировать&nbsp;профиль</h3>
       <form class="popup__form">
-        <input class="popup__field popup__field_name" type="text" name="username" value="Жак-Ив Кусто">
-        <input class="popup__field popup__field_description" type="text" name="description"
-          value="Исследователь океана">
+        <input class="popup__field popup__field_name" type="text" name="username">
+        <input class="popup__field popup__field_description" type="text" name="description">
         <button class="popup__save-button" type="submit">Сохранить</button>
         <button class="popup__exit-button" type="button"></button>
       </form>
@@ -62,7 +61,7 @@
       <h3 class="popup__title">Новое место</h3>
       <form class="popup__form">
         <input class="popup__field popup__field_title" type="text" name="name" placeholder="Название">
-        <input class="popup__field popup__field_link" type="text" name="link-to-picture"
+        <input class="popup__field popup__field_link" type="url" name="link-to-picture"
           placeholder="Ссылка на картинку">
         <button type="submit" class="popup__save-button">Создать</button>
         <button class="popup__exit-button" type="button"></button>
@@ -77,6 +76,7 @@
       <button class="popup__exit-button" type="button"></button>
     </div>
   </div>
+  <script src="./scripts/cards.js"></script>
 
   <script src="./scripts/script.js"></script>
 </body>
