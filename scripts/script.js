@@ -12,12 +12,18 @@ const buttonAddCard = document.querySelector('.profile__button-add');
 const formAddCard = popupAddCard.querySelector('.popup__form');
 const titleInput = document.querySelector('.popup__field_title');
 const linkInput = document.querySelector('.popup__field_link');
-const cardTemplate = document.querySelector('#elements-template').content;
-const photoListSelector = document.querySelector('.elements__photo-grid');
+
+
+const cardsTemplate = document.querySelector('#elements-template').content;
+const templateCard = cardsTemplate.querySelector('.elements__element');
+const cardsContainer = document.querySelector('.elements__photo-grid');
+
+
 const popupImageView = document.querySelector('.popup_view-image');
 const popupImage = document.querySelector('.popup__image');
 const popupImageName = document.querySelector('.popup__image-name');
 const popupCloseButtonImage = popupImageView.querySelector('.popup__exit-button');
+
 
 
 
@@ -65,8 +71,10 @@ buttonAddCard.addEventListener('click', openPopupAddCard);
 popupCloseButtonAdd.addEventListener('click', closePopupAddCard);
 
 
+
+
 function createCard(card) {
-  const newCard = cardTemplate.querySelector('.elements__element').cloneNode(true);
+  const newCard = templateCard.cloneNode(true);
   const buttonLikeCard = newCard.querySelector('.elements__like');
   const buttonDeleteCard = newCard.querySelector('.elements__delete');
   const titleCard = newCard.querySelector('.elements__title');
@@ -106,7 +114,7 @@ function createCard(card) {
 
 function addCard(cardData) {
   const newCard = createCard(cardData);
-  photoListSelector.prepend(newCard);
+  cardsContainer.prepend(newCard);
 }
 
 
