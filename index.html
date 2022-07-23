@@ -48,12 +48,12 @@
     <div class="popup__container">
       <h3 class="popup__title">Редактировать&nbsp;профиль</h3>
       <form class="form" novalidate>
-        <input class="form__input form__input_name" id="name_input" type="text" name="username" required minlength="2"
+        <input class="form__input form__input_name" id="form__input_name" type="text" name="username" required minlength="2"
           maxlength="40">
-        <span class="form__input-error name_input-error"></span>
-        <input class="form__input form__input_description" id="description_input" type="text" name="description"
+        <span class="form__input-error form__input_name-error"></span>
+        <input class="form__input form__input_description" id="form__input_description" type="text" name="description"
           required minlength="2" maxlength="200">
-        <span class="form__input-error description_input-error"></span>
+        <span class="form__input-error form__input_description-error"></span>
         <button class="form__save-button" type="submit">Сохранить</button>
         <button class="popup__exit-button" type="button"></button>
       </form>
@@ -64,12 +64,12 @@
     <div class="popup__container">
       <h3 class="popup__title">Новое место</h3>
       <form class="form" novalidate>
-        <input class="form__input form__input_title" id="title_input" type="text" name="name" placeholder="Название"
+        <input class="form__input form__input_title" id="form__input_title" type="text" name="name" placeholder="Название"
           required minlength="2" maxlength="30">
-        <span class="form__input-error title_input-error"></span>
-        <input class="form__input form__input_link" id="link_input" type="url" name="link-to-picture"
+        <span class="form__input-error form__input_title-error"></span>
+        <input class="form__input form__input_link" id="form__input_link" type="url" name="link-to-picture"
           placeholder="Ссылка на картинку" required>
-        <span class="form__input-error link_input-error"></span>
+        <span class="form__input-error form__input_link-error"></span>
         <button type="submit" class="form__save-button">Создать</button>
         <button class="popup__exit-button" type="button"></button>
       </form>
