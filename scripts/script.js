@@ -1,17 +1,17 @@
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const buttonEditProfile = document.querySelector('.profile__button-edit');
-const formEditProfile = popupEditProfile.querySelector('.popup__form');
-const nameInput = document.querySelector('.popup__field_name');
-const jobInput = document.querySelector('.popup__field_description');
+const formEditProfile = popupEditProfile.querySelector('.form');
+const nameInput = document.querySelector('.form__input_name');
+const jobInput = document.querySelector('.form__input_description');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const popupCloseButtonEdit = popupEditProfile.querySelector('.popup__exit-button');
 const popupAddCard = document.querySelector('.popup_add_new-element');
 const popupCloseButtonAdd = popupAddCard.querySelector('.popup__exit-button');
 const buttonAddCard = document.querySelector('.profile__button-add');
-const formAddCard = popupAddCard.querySelector('.popup__form');
-const titleInput = document.querySelector('.popup__field_title');
-const linkInput = document.querySelector('.popup__field_link');
+const formAddCard = popupAddCard.querySelector('.form');
+const titleInput = document.querySelector('.form__input_title');
+const linkInput = document.querySelector('.form__input_link');
 
 
 const cardsTemplate = document.querySelector('#elements-template').content;
@@ -44,6 +44,43 @@ function openProfileEditPopup() {
 function closeProfileEditPopup() {
   closePopup(popupEditProfile);
 }
+
+function closeOnOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target);
+  };
+}
+
+const popupList = Array.from(document.querySelectorAll('.popup'));
+popupList.forEach((popup) => {
+  popup.addEventListener('click', closeOnOverlay);
+});
+
+
+function keyHandler(evt, popup) {
+  console.log(evt)
+  if (evt.key === 'Escape') {
+    closePopup(popup);
+  };
+};
+
+
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keyup', function (evt) {
+    keyHandler(evt, popup)
+  });
+}
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keyup', function (evt) {
+    keyHandler(evt, popup)
+  });
+}
+
+
 
 
 buttonEditProfile.addEventListener('click', openProfileEditPopup);
