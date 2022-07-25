@@ -1,7 +1,7 @@
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const buttonEditProfile = document.querySelector('.profile__button-edit');
 const formEditProfile = popupEditProfile.querySelector('.form');
-const nameInput = document.querySelector('.form__input_name');
+const nameInput = document.querySelector('.form__input-name');
 const jobInput = document.querySelector('.form__input-description');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
@@ -10,9 +10,8 @@ const popupAddCard = document.querySelector('.popup_add_new-element');
 const popupCloseButtonAdd = popupAddCard.querySelector('.popup__exit-button');
 const buttonAddCard = document.querySelector('.profile__button-add');
 const formAddCard = popupAddCard.querySelector('.form');
-const titleInput = document.querySelector('.form__input_title');
-const linkInput = document.querySelector('.form__input_link');
-
+const titleInput = document.querySelector('.form__input-title');
+const linkInput = document.querySelector('.form__input-link');
 
 const cardsTemplate = document.querySelector('#elements-template').content;
 const templateCard = cardsTemplate.querySelector('.elements__element');
@@ -22,7 +21,7 @@ const cardsContainer = document.querySelector('.elements__photo-grid');
 const popupImageView = document.querySelector('.popup_view-image');
 const popupImage = document.querySelector('.popup__image');
 const popupImageName = document.querySelector('.popup__image-name');
-const popupCloseButtonImage = popupImageView.querySelector('.popup__exit-button');
+const popupImageCloseButton = popupImageView.querySelector('.popup__exit-button');
 
 
 
@@ -45,40 +44,41 @@ function closeProfileEditPopup() {
   closePopup(popupEditProfile);
 }
 
-function closeOnOverlay(evt) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(evt.target);
+function closeOnClick(evt) {
+  const buttonClosePopup = evt.currentTarget.querySelector('.popup__exit-button');
+  if (evt.target === evt.currentTarget || evt.target === buttonClosePopup) {
+    closePopup(evt.currentTarget);
   };
 }
 
-const popupList = Array.from(document.querySelectorAll('.popup'));
+const popupList = [popupAddCard, popupEditProfile, popupImageView];
 popupList.forEach((popup) => {
-  popup.addEventListener('click', closeOnOverlay);
+  popup.addEventListener('click', closeOnClick);
 });
 
-
-function keyHandler(evt, popup) {
-  console.log(evt)
+function closeOnEscKey(evt, popup) {
   if (evt.key === 'Escape') {
     closePopup(popup);
   };
 };
 
+function keyHandler(evt) {
+  const popupOpened = document.querySelector('.popup_opened')
+  closeOnEscKey(evt, popupOpened)
+}
 
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keyup', function (evt) {
-    keyHandler(evt, popup)
-  });
+  document.removeEventListener('keyup', keyHandler);
 }
+
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keyup', function (evt) {
-    keyHandler(evt, popup)
-  });
-}
+  document.addEventListener('keyup', keyHandler)
+  }
+
 
 
 
@@ -105,8 +105,6 @@ function closePopupAddCard() {
 }
 
 buttonAddCard.addEventListener('click', openPopupAddCard);
-popupCloseButtonAdd.addEventListener('click', closePopupAddCard);
-
 
 
 
@@ -135,7 +133,7 @@ function createCard(card) {
   }
 
   function handleDeleteClick(evt) {
-    evt.target.closest('.elements__element').remove()
+    newCard.remove()
   }
 
   imageCard.addEventListener('click', openImageFullPopup);
@@ -162,8 +160,10 @@ function handleSubmitFormCard(evt) {
     link: linkInput.value
   })
   closePopup(popupAddCard);
-  titleInput.value = "";
-  linkInput.value = "";
+  const buttonElement = popupAddCard.querySelector('.form__save-button')
+  formAddCard.reset();
+  buttonElement.setAttribute('disabled', true)
+  buttonElement.classList.add('form__save-button_disabled');
 }
 
 formAddCard.addEventListener('submit', handleSubmitFormCard);
@@ -172,14 +172,14 @@ function closeImageFullPopup() {
   closePopup(popupImageView);
 }
 
-popupCloseButtonImage.addEventListener('click', closeImageFullPopup);
+popupImageCloseButton.addEventListener('click', closeImageFullPopup);
 
 
-const renderCards = () => {
+const renderInitialCard = () => {
   initialCards.forEach(addCard);
 }; //добавление 6-ти карточек
 
-renderCards();
+renderInitialCard();
 
 
 

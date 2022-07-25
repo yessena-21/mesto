@@ -52,6 +52,8 @@ showInputError = (formElement, inputElement, errorMessage, obj) => {
         return !inputElement.validity.valid;
     });
   }
+
+  
   function toggleButtonState(inputList, buttonElement, obj) {
   
     if (hasInvalidInput(inputList)) {
