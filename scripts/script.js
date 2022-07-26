@@ -27,13 +27,6 @@ const popupImageCloseButton = popupImageView.querySelector('.popup__exit-button'
 
 
 
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-}
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-}
-
 function openProfileEditPopup() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
@@ -56,27 +49,23 @@ popupList.forEach((popup) => {
   popup.addEventListener('click', closeOnClick);
 });
 
-function closeOnEscKey(evt, popup) {
+function closeOnEscKey(evt) {
   if (evt.key === 'Escape') {
-    closePopup(popup);
+    const popupOpened = document.querySelector('.popup_opened')
+    closePopup(popupOpened);
   };
 };
-
-function keyHandler(evt) {
-  const popupOpened = document.querySelector('.popup_opened')
-  closeOnEscKey(evt, popupOpened)
-}
 
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keyup', keyHandler);
+  document.removeEventListener('keyup', closeOnEscKey);
 }
 
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keyup', keyHandler)
+  document.addEventListener('keyup', closeOnEscKey);
   }
 
 
