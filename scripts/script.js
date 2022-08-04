@@ -13,20 +13,94 @@ const formAddCard = popupAddCard.querySelector('.popup__form');
 const titleInput = document.querySelector('.popup__field_title');
 const linkInput = document.querySelector('.popup__field_link');
 
-
-const cardsTemplate = document.querySelector('#elements-template').content;
-const templateCard = cardsTemplate.querySelector('.elements__element');
-const cardsContainer = document.querySelector('.elements__photo-grid');
-
-
 const popupImageView = document.querySelector('.popup_view-image');
 const popupImage = document.querySelector('.popup__image');
 const popupImageName = document.querySelector('.popup__image-name');
 const popupCloseButtonImage = popupImageView.querySelector('.popup__exit-button');
 
 
+// контейнер для карточек
+class CardsContainer {
+  constructor(containerSelector) {
+    this._container = document.querySelector(containerSelector);
+  }
+
+  addCard(card) {
+    this._container.prepend(card);
+  }
+
+}
 
 
+
+class Card {
+
+  #template = document.querySelector('#elements-template').content;
+  #data;
+  #card;
+  constructor(data) {
+
+    this._data = data;
+
+  }
+
+  _createCard = () => {
+
+    this._card = this.#template.cloneNode(true).children[0];
+
+    console.log(this.#card)
+    this._card.querySelector('.elements__image').alt = this._data.name;
+    this._card.querySelector('.elements__image').src = this._data.link;
+    this._card.querySelector('.elements__title').textContent = this._data.name;
+
+    this._card.querySelector('.elements__image').addEventListener('click', this._openImageFullPopup);
+    this._card.querySelector('.elements__like').addEventListener('click', this._handleLikeClick);
+    this._card.querySelector('.elements__delete').addEventListener('click', this._handleDeleteClick);
+
+  }
+
+  _openImageFullPopup = () => {
+    popupImage.src = this._data.link;
+    popupImage.alt = this._data.name;
+    popupImageName.textContent = this._data.name;
+
+    openPopup(popupImageView);
+  }
+
+  _handleLikeClick = () => {
+    const buttonLike = this._card.querySelector('.elements__like');
+    buttonLike.classList.toggle('element__like_active');
+  }
+
+  _handleDeleteClick = () => {
+    this._card.remove()
+  }
+
+  getCard = () => {
+    this._createCard();
+
+    return this._card;
+    //cardsContainer.prepend(newCard);
+  }
+
+}
+
+const cardsContainer = new CardsContainer('.elements__photo-grid');
+
+function addCard(cardData) {
+  console.log(cardData);
+  const newcard = new Card(cardData);
+  console.log(newcard);
+  const card = newcard.getCard();
+  console.log(card);
+  cardsContainer.addCard(card);
+}
+
+const renderCards = () => {
+  initialCards.forEach(addCard);
+}; //добавление 6-ти карточек
+
+renderCards();
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -70,54 +144,6 @@ function closePopupAddCard() {
 buttonAddCard.addEventListener('click', openPopupAddCard);
 popupCloseButtonAdd.addEventListener('click', closePopupAddCard);
 
-
-
-
-function createCard(card) {
-  const newCard = templateCard.cloneNode(true);
-  const buttonLikeCard = newCard.querySelector('.elements__like');
-  const buttonDeleteCard = newCard.querySelector('.elements__delete');
-  const titleCard = newCard.querySelector('.elements__title');
-  const imageCard = newCard.querySelector('.elements__image');
-
-  titleCard.textContent = card.name;
-  imageCard.src = card.link;
-  imageCard.alt = card.name;
-
-
-  function openImageFullPopup() {
-    popupImage.src = imageCard.src;
-    popupImage.alt = imageCard.alt;
-    popupImageName.textContent = imageCard.alt;
-
-    openPopup(popupImageView);
-  }
-
-  function handleLikeClick() {
-    buttonLikeCard.classList.toggle('element__like_active');
-  }
-
-  function handleDeleteClick(evt) {
-    evt.target.closest('.elements__element').remove()
-  }
-
-  imageCard.addEventListener('click', openImageFullPopup);
-  buttonLikeCard.addEventListener('click', handleLikeClick);
-  buttonDeleteCard.addEventListener('click', handleDeleteClick);
-
-  return newCard;
-
-}
-
-
-
-
-function addCard(cardData) {
-  const newCard = createCard(cardData);
-  cardsContainer.prepend(newCard);
-}
-
-
 function handleSubmitFormCard(evt) {
   evt.preventDefault();
   addCard({
@@ -138,11 +164,7 @@ function closeImageFullPopup() {
 popupCloseButtonImage.addEventListener('click', closeImageFullPopup);
 
 
-const renderCards = () => {
-  initialCards.forEach(addCard);
-}; //добавление 6-ти карточек
 
-renderCards();
 
 
 
