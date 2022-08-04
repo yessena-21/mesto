@@ -1,8 +1,6 @@
 .elements__description {
-    min-height: 75px;
+    padding: 25px 21px 26px;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: auto 21px;
-}
+  }
