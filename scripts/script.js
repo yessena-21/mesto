@@ -52,7 +52,6 @@ class Card {
 
     this._card = this.#template.cloneNode(true).children[0];
 
-    console.log(this.#card)
     this._card.querySelector('.elements__image').alt = this._data.name;
     this._card.querySelector('.elements__image').src = this._data.link;
     this._card.querySelector('.elements__title').textContent = this._data.name;
@@ -88,6 +87,37 @@ class Card {
   }
 
 }
+
+/// добавляем начальные карточки
+const cardsContainer = new CardsContainer('.elements__photo-grid');
+
+function addCard(cardData) {
+  const newcard = new Card(cardData);
+  const card = newcard.getCard();
+
+  cardsContainer.addCard(card);
+}
+
+const renderInitialCard = () => {
+  initialCards.forEach(addCard);
+};
+renderInitialCard();
+// конец добавления 6-ти карточек
+
+
+// class FormValidation {
+//   constructor(formSelector,onAddCard) {
+//     document.querySelector(formSelector).addEventListener('submit', this._submitHandler);
+//     this._onAddCard = onAddCard;
+//   }
+
+//   _submitHandler = (evt) => {
+//     evt.preventDefault();
+
+//     const data = Object.fromEntries(new FormData(evt.target));
+//     this._onAddCard(data)
+//   }
+// }
 
 
 
@@ -131,7 +161,7 @@ function closePopup(popup) {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keyup', closeOnEscKey);
-  }
+}
 
 
 
@@ -160,23 +190,6 @@ function closePopupAddCard() {
 
 buttonAddCard.addEventListener('click', openPopupAddCard);
 
-/// добавляем начальные карточки
-const cardsContainer = new CardsContainer('.elements__photo-grid');
-
-function addCard(cardData) {
-  console.log(cardData);
-  const newcard = new Card(cardData);
-  console.log(newcard);
-  const card = newcard.getCard();
-  console.log(card);
-  cardsContainer.addCard(card);
-}
-
-const renderInitialCard = () => {
-  initialCards.forEach(addCard);
-}; 
-renderInitialCard();
-// конец добавления 6-ти карточек
 
 function handleSubmitFormCard(evt) {
   evt.preventDefault();
