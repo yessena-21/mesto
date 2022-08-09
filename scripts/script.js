@@ -13,9 +13,9 @@ const formAddCard = popupAddCard.querySelector('.form');
 const titleInput = document.querySelector('.form__input-title');
 const linkInput = document.querySelector('.form__input-link');
 
-const cardsTemplate = document.querySelector('#elements-template').content;
-const templateCard = cardsTemplate.querySelector('.elements__element');
-const cardsContainer = document.querySelector('.elements__photo-grid');
+// const cardsTemplate = document.querySelector('#elements-template').content;
+// const templateCard = cardsTemplate.querySelector('.elements__element');
+// const cardsContainer = document.querySelector('.elements__photo-grid');
 
 
 const popupImageView = document.querySelector('.popup_view-image');
@@ -23,6 +23,101 @@ const popupImage = document.querySelector('.popup__image');
 const popupImageName = document.querySelector('.popup__image-name');
 const popupImageCloseButton = popupImageView.querySelector('.popup__exit-button');
 
+
+// контейнер для карточек
+class CardsContainer {
+  constructor(containerSelector) {
+    this._container = document.querySelector(containerSelector);
+  }
+
+  addCard(card) {
+    this._container.prepend(card);
+  }
+
+}
+
+// класс карточек
+class Card {
+
+  #template = document.querySelector('#elements-template').content;
+  #data;
+  #card;
+  constructor(data) {
+
+    this._data = data;
+
+  }
+
+  _createCard = () => {
+
+    this._card = this.#template.cloneNode(true).children[0];
+
+    this._card.querySelector('.elements__image').alt = this._data.name;
+    this._card.querySelector('.elements__image').src = this._data.link;
+    this._card.querySelector('.elements__title').textContent = this._data.name;
+
+    this._card.querySelector('.elements__image').addEventListener('click', this._openImageFullPopup);
+    this._card.querySelector('.elements__like').addEventListener('click', this._handleLikeClick);
+    this._card.querySelector('.elements__delete').addEventListener('click', this._handleDeleteClick);
+
+  }
+
+  _openImageFullPopup = () => {
+    popupImage.src = this._data.link;
+    popupImage.alt = this._data.name;
+    popupImageName.textContent = this._data.name;
+
+    openPopup(popupImageView);
+  }
+
+  _handleLikeClick = () => {
+    const buttonLike = this._card.querySelector('.elements__like');
+    buttonLike.classList.toggle('element__like_active');
+  }
+
+  _handleDeleteClick = () => {
+    this._card.remove()
+  }
+
+  getCard = () => {
+    this._createCard();
+
+    return this._card;
+    //cardsContainer.prepend(newCard);
+  }
+
+}
+
+/// добавляем начальные карточки
+const cardsContainer = new CardsContainer('.elements__photo-grid');
+
+function addCard(cardData) {
+  const newcard = new Card(cardData);
+  const card = newcard.getCard();
+
+  cardsContainer.addCard(card);
+}
+
+const renderInitialCard = () => {
+  initialCards.forEach(addCard);
+};
+renderInitialCard();
+// конец добавления 6-ти карточек
+
+
+// class FormValidation {
+//   constructor(formSelector,onAddCard) {
+//     document.querySelector(formSelector).addEventListener('submit', this._submitHandler);
+//     this._onAddCard = onAddCard;
+//   }
+
+//   _submitHandler = (evt) => {
+//     evt.preventDefault();
+
+//     const data = Object.fromEntries(new FormData(evt.target));
+//     this._onAddCard(data)
+//   }
+// }
 
 
 
@@ -66,65 +161,10 @@ function closePopup(popup) {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keyup', closeOnEscKey);
-  }
-
-// описание класса Card
-  class Card {
-    constructor(data, templateSelector) { 
-        this._titleCard = data.name;
-        this._imageCard = data.link;
-        //this._description = data.description
-        this._templateSelector = templateSelector; // записали селектор в приватное поле
-    }
-
-    _getTemplate() {
-      const cardElement = document
-        .querySelector(this._templateSelector)
-        .content
-        .querySelector('.card')
-        .cloneNode(true);
-  
-      return cardElement;
-    }
-
-    _createCard() {
-      this._element = this._getTemplate();
+}
 
 
-      // const newCard = templateCard.cloneNode(true);
-      // const buttonLikeCard = newCard.querySelector('.elements__like');
-      // const buttonDeleteCard = newCard.querySelector('.elements__delete');
-      // const titleCard = newCard.querySelector('.elements__title');
-      // const imageCard = newCard.querySelector('.elements__image');
-    
-      this._element.querySelector('.elements__image').src = `url(${this._imageCard})`;
-      this._element.querySelector('.elements__title').textContent = this._titleCard;
-    
-      function openImageFullPopup() {
-        popupImage.src = imageCard.src;
-        popupImage.alt = imageCard.alt;
-        popupImageName.textContent = imageCard.alt;
-    
-        openPopup(popupImageView);
-      }
-    
-      function handleLikeClick() {
-        buttonLikeCard.classList.toggle('element__like_active');
-      }
-    
-      function handleDeleteClick(evt) {
-        newCard.remove()
-      }
-    
-      imageCard.addEventListener('click', openImageFullPopup);
-      buttonLikeCard.addEventListener('click', handleLikeClick);
-      buttonDeleteCard.addEventListener('click', handleDeleteClick);
-    
-      return newCard;
-    
-    }
-    
-  }
+
 
 
 buttonEditProfile.addEventListener('click', openProfileEditPopup);
@@ -151,22 +191,6 @@ function closePopupAddCard() {
 buttonAddCard.addEventListener('click', openPopupAddCard);
 
 
-
-
-function addCard(cardData) {
-  
-  const newCard = new Card(cardData);
-  const cardElement  = newCard._createCard();
-
-  cardsContainer.prepend(cardElement);
-}
-
-// function addCard(cardData) {
-//   const newCard = createCard(cardData);
-//   cardsContainer.prepend(newCard);
-// }
-
-
 function handleSubmitFormCard(evt) {
   evt.preventDefault();
   addCard({
@@ -187,16 +211,4 @@ function closeImageFullPopup() {
 }
 
 popupImageCloseButton.addEventListener('click', closeImageFullPopup);
-
-
-const renderInitialCard = () => {
-  initialCards.forEach(addCard);
-}; //добавление 6-ти карточек
-
-renderInitialCard();
-
-
-
-
-
 
