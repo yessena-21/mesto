@@ -1,15 +1,15 @@
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const buttonEditProfile = document.querySelector('.profile__button-edit');
-const formEditProfile = popupEditProfile.querySelector('.form');
-const nameInput = document.querySelector('.form__input-name');
-const jobInput = document.querySelector('.form__input-description');
+const formEditProfile = popupEditProfile.querySelector('.popup__form');
+const nameInput = document.querySelector('.popup__field_name');
+const jobInput = document.querySelector('.popup__field_description');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const popupCloseButtonEdit = popupEditProfile.querySelector('.popup__exit-button');
 const popupAddCard = document.querySelector('.popup_add_new-element');
 const popupCloseButtonAdd = popupAddCard.querySelector('.popup__exit-button');
 const buttonAddCard = document.querySelector('.profile__button-add');
-const formAddCard = popupAddCard.querySelector('.form');
+const formAddCard = popupAddCard.querySelector('.popup__form');
 const titleInput = document.querySelector('.form__input-title');
 const linkInput = document.querySelector('.form__input-link');
 
@@ -22,8 +22,8 @@ const popupImageView = document.querySelector('.popup_view-image');
 const popupImage = document.querySelector('.popup__image');
 const popupImageName = document.querySelector('.popup__image-name');
 const popupImageCloseButton = popupImageView.querySelector('.popup__exit-button');
-
-
+console.log(profileName)
+console.log(formAddCard)
 // контейнер для карточек
 class CardsContainer {
   constructor(containerSelector) {
@@ -104,24 +104,6 @@ const renderInitialCard = () => {
 renderInitialCard();
 // конец добавления 6-ти карточек
 
-
-// class FormValidation {
-//   constructor(formSelector,onAddCard) {
-//     document.querySelector(formSelector).addEventListener('submit', this._submitHandler);
-//     this._onAddCard = onAddCard;
-//   }
-
-//   _submitHandler = (evt) => {
-//     evt.preventDefault();
-
-//     const data = Object.fromEntries(new FormData(evt.target));
-//     this._onAddCard(data)
-//   }
-// }
-
-
-
-
 function openProfileEditPopup() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
@@ -169,13 +151,14 @@ function openPopup(popup) {
 
 buttonEditProfile.addEventListener('click', openProfileEditPopup);
 popupCloseButtonEdit.addEventListener('click', closeProfileEditPopup);
-
+console.log(popupEditProfile)
 function handleSubmitFormProfile(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
   closePopup(popupEditProfile);
 }
+
 
 formEditProfile.addEventListener('submit', handleSubmitFormProfile);
 
@@ -212,3 +195,117 @@ function closeImageFullPopup() {
 
 popupImageCloseButton.addEventListener('click', closeImageFullPopup);
 
+// class FormValidation {
+//   constructor(validationParams,formElement) {
+//     this._formElement = validationParams.formElement;
+//     this._inputElement = validationParams.inputElement;
+//     this._buttonElement = validationParams.buttonElement;
+//     this._inactiveButtonClass = validationParams.inactiveButtonClass;
+//     this._inputErrorClass = validationParams.inputErrorClass;
+//     this._errorShowClass = validationParams.errorShowClass;
+//     this._controlSelectorClass = validationParams.controlSelectorClass;
+//     this._errorClass = validationParams.errorClass;
+
+//     this._formElement = FormElement;
+//   }
+
+// //   _submitHandler = (evt) => {
+// //     evt.preventDefault();
+
+// //     const data = Object.fromEntries(new FormData(evt.target));
+// //     this._onAddCard(data)
+// //   }
+
+//   _showInputError = (inputElement, errorMessage) => {
+//    // this._formElement = document.querySelector(formSelector);
+
+//     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+//     inputElement.classList.add(this._inputErrorClass);
+//     errorElement.textContent = errorMessage;
+//     errorElement.classList.add(this._errorClass);
+//   };
+  
+//   _hideInputError = (inputElement) => {
+//     //const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+//     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+//     inputElement.classList.remove(this._inputErrorClass);
+//     errorElement.classList.remove(this._errorClass);
+//     errorElement.textContent = ' ';
+//   };
+  
+//   _checkInputValidity(inputElement) {
+//     if (!inputElement.validity.valid) {
+//         this._showInputError(inputElement, inputElement.validationMessage);
+//     } else {
+//         this._hideInputError(formElement, inputElement); 
+//     }
+//   };
+
+//   _hasInvalidInput(inputList) {
+//     return inputList.some((inputElement) => {
+//         return !inputElement.validity.valid;
+//     });
+//   }
+
+//   _toggleButtonState(inputList, buttonElement) {
+
+//     if (hasInvalidInput(inputList)) {
+//         buttonElement.classList.add(this._inactiveButtonClass);
+//         buttonElement.setAttribute('disabled', true)
+//     } else {
+//         buttonElement.classList.remove(this._inactiveButtonClass);
+//         buttonElement.removeAttribute('disabled')
+//     }
+  
+//   }
+
+//   _setEventListeners(formElement) {
+//     const inputList = Array.from(formElement.querySelectorAll(this._inputElement));
+//     const buttonElement = formElement.querySelector(this._buttonElement);
+//     this._toggleButtonState(inputList, buttonElement);
+//     inputList.forEach((inputElement) => {
+//         inputElement.addEventListener('input', function () {
+//             this._checkInputValidity(inputElement);
+//         });
+//     });
+//   };
+
+//   enableValidation() {
+//     const formList = Array.from(this._formElement.querySelectorAll(this._inputElement));
+//     formList.forEach((formElement) => {
+//         formElement.addEventListener('submit', function (evt) {
+//             evt.preventDefault();
+//         });
+//     this._setEventListeners(this._formElement);
+//     });
+   
+//   };
+
+// }
+
+// const validationParams = {
+// formElement: '.popup__form',
+// inputElement: '.popup__input',
+// buttonElement: '.popup__submit',
+// inactiveButtonClass: 'popup__submit_type_disabled',
+// inputErrorClass: 'popup__input_type_error',
+// errorShowClass: 'popup__error_type_active',
+// controlSelectorClass: '.popup__control',
+// errorClass: '.popup__error'
+// };
+
+// const formList = Array.from(document.querySelectorAll('popup__form'));
+
+// formList.forEach((formElement) => {
+
+//   const formValid =  new FormValidation(validationParams,formElement);
+//   formValid.enableValidation(formValid._formElement);
+//   // formElement.addEventListener('submit', (evt) => {
+//   //   // У каждой формы отменим стандартное поведение
+//   //   evt.preventDefault();
+//   // });
+
+//   // // Для каждой формы вызовем функцию setEventListeners,
+//   // // передав ей элемент формы
+//   // setEventListeners(formElement);
+// });
