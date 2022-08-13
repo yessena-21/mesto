@@ -1,18 +1,17 @@
 export default class Card {
 
-  #template = document.querySelector('#elements-template').content;
-  #data;
-  #card;
-  constructor(data,openImageFullPopup) {
+  constructor(data, templateSelector, openImageFullPopup) {
 
     this._data = data;
+    this._template = document.querySelector(templateSelector).content;;
     this._openImageFullPopup = openImageFullPopup;
+
 
   }
 
   _createCard = () => {
 
-    this._card = this.#template.cloneNode(true).children[0];
+    this._card = this._template.cloneNode(true).children[0];
 
     this._card.querySelector('.elements__image').alt = this._data.name;
     this._card.querySelector('.elements__image').src = this._data.link;

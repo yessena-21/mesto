@@ -130,7 +130,7 @@ function closeImageFullPopup() {
 popupImageCloseButton.addEventListener('click', closeImageFullPopup);
 
 function addCard(cardData) {
-  const newcard = new Card(cardData, openImageFullPopup);
+  const newcard = new Card(cardData,'#elements-template', openImageFullPopup);
   const card = newcard.getCard();
 
   cardsContainer.prepend(card);
