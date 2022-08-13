@@ -1,8 +1,8 @@
 import Card from '../scripts/Card.js';
-import FormValidator from '../scripts/FormValidator.js';
+import FormValidator from './FormValidator.js';
 import { initialCards } from '../scripts/cards.js';
 
-const popupEditProfile = document.querySelector('.popup_edit-profile');
+const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const buttonEditProfile = document.querySelector('.profile__button-edit');
 const formEditProfile = popupEditProfile.querySelector('.form');
 const nameInput = document.querySelector('.form__input-name');
@@ -11,7 +11,7 @@ const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const popupCloseButtonEdit = popupEditProfile.querySelector('.popup__exit-button');
 
-const popupAddCard = document.querySelector('.popup_add_new-element');
+const popupAddCard = document.querySelector('.popup_type_add_new-element');
 const popupCloseButtonAdd = popupAddCard.querySelector('.popup__exit-button');
 const buttonAddCard = document.querySelector('.profile__button-add');
 const formAddCard = popupAddCard.querySelector('.form');
@@ -19,7 +19,7 @@ const titleInput = document.querySelector('.form__input-title');
 const linkInput = document.querySelector('.form__input-link');
 
 const cardsContainer = document.querySelector('.elements__photo-grid');
-const popupImageView = document.querySelector('.popup_view-image');
+const popupImageView = document.querySelector('.popup_type_view-image');
 const popupImage = document.querySelector('.popup__image');
 const popupImageName = document.querySelector('.popup__image-name');
 const popupImageCloseButton = popupImageView.querySelector('.popup__exit-button');
@@ -38,8 +38,6 @@ function openProfileEditPopup() {
 
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
-  const formValid = new FormValidator(validationParams, popupEditProfile);
-  formValid.enableValidation();
   openPopup(popupEditProfile);
   console.log(popupEditProfile);
 }
@@ -71,6 +69,12 @@ function closePopup(popup) {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keyup', closeOnEscKey);
+  
+  const formElement = popup.querySelector('.form');
+  const buttonElement = popup.querySelector('.form__save-button')
+  const formValid = new FormValidator(validationParams, formElement);
+  formValid.disableSubmitButton(buttonElement);  
+
 };
 
 
@@ -95,8 +99,6 @@ formEditProfile.addEventListener('submit', handleSubmitFormProfile);
 
 
 function openPopupAddCard() {
-  const formValid = new FormValidator(validationParams, popupAddCard);
-  formValid.enableValidation();
   openPopup(popupAddCard);
 }
 
@@ -115,10 +117,13 @@ function handleSubmitFormCard(evt) {
     link: linkInput.value
   })
   closePopup(popupAddCard);
-  const buttonElement = popupAddCard.querySelector('.form__save-button')
+  
+  
   formAddCard.reset();
-  buttonElement.setAttribute('disabled', true)
-  buttonElement.classList.add('form__save-button_disabled');
+  const buttonElement = popupAddCard.querySelector('.form__save-button')
+
+  const formValid = new FormValidator(validationParams, formAddCard);
+  formValid.disableSubmitButton(buttonElement);  
 }
 
 formAddCard.addEventListener('submit', handleSubmitFormCard);
@@ -131,7 +136,7 @@ popupImageCloseButton.addEventListener('click', closeImageFullPopup);
 
 function addCard(cardData) {
   const newcard = new Card(cardData,'#elements-template', openImageFullPopup);
-  const card = newcard.getCard();
+  const card = newcard.createCard();
 
   cardsContainer.prepend(card);
 }
@@ -141,3 +146,17 @@ const renderInitialCard = () => {
 };
 renderInitialCard();
 // конец добавления 6-ти карт
+
+const popupList = document.querySelectorAll('.popup');
+const popupFormList = document.querySelectorAll('.form');
+
+popupList.forEach((popup) => {
+  popup.addEventListener('click', closeOnClick);
+
+});
+
+popupFormList.forEach((formElement) => {
+  const formValid = new FormValidator(validationParams, formElement);
+  formValid.enableValidation();
+
+});
