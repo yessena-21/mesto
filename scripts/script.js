@@ -11,7 +11,7 @@ const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const popupCloseButtonEdit = popupEditProfile.querySelector('.popup__exit-button');
 
-const popupAddCard = document.querySelector('.popup_type_add_new-element');
+const popupAddCard = document.querySelector('.popup_type_add-new-element');
 const popupCloseButtonAdd = popupAddCard.querySelector('.popup__exit-button');
 const buttonAddCard = document.querySelector('.profile__button-add');
 const formAddCard = popupAddCard.querySelector('.form');
