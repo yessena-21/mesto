@@ -13,10 +13,13 @@ export default class Card {
 
     this._card = this._template.cloneNode(true).querySelector('.elements__element');
     this._buttonLike = this._card.querySelector('.elements__like');
+    this._cardImage =  this._card.querySelector('.elements__image');
+    this._cardTitle =  this._card.querySelector('.elements__title');
+    this._buttonDelete =  this._card.querySelector('.elements__delete');
 
-    this._card.querySelector('.elements__image').alt = this._data.name;
-    this._card.querySelector('.elements__image').src = this._data.link;
-    this._card.querySelector('.elements__title').textContent = this._data.name;
+    this._cardImage.alt = this._data.name;
+    this._cardImage.src = this._data.link;
+    this._cardTitle.textContent = this._data.name;
 
     this._setEventListeners();
 
@@ -26,9 +29,9 @@ export default class Card {
 
   _setEventListeners() {
 
-    this._card.querySelector('.elements__image').addEventListener('click', this._handleCardClick);
-    this._card.querySelector('.elements__like').addEventListener('click', this._handleLikeClick);
-    this._card.querySelector('.elements__delete').addEventListener('click', this._handleDeleteClick);
+    this._cardImage.addEventListener('click', this._handleCardClick);
+    this._buttonLike .addEventListener('click', this._handleLikeClick);
+    this._buttonDelete.addEventListener('click', this._handleDeleteClick);
 
   }
 
@@ -40,7 +43,8 @@ export default class Card {
 
   _handleDeleteClick = () => {
 
-    this._card.remove()
+    this._card.remove();
+    this._card = null;
 
   }
 
