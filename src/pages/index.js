@@ -79,7 +79,7 @@ popupAddCard.setEventListeners();
 
 // +++  попап просмотр картинки
 const popupImageView = new PopupWithImage(popupImageViewSelector);
-popupEditProfile.setEventListeners();
+popupImageView.setEventListeners();
 // ---  попап просмотр картинки
 
 // --- попапы
