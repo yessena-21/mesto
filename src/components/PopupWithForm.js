@@ -10,13 +10,12 @@ export default class PopupWithImage extends Popup {
     }
 
     _getInputValues() {
-      
+
         this._formValues = {};
         this._inputList.forEach(inputElement => this._formValues[inputElement.name] = inputElement.value);
-        console.log(this._formValues);
 
         return this._formValues;
-        
+
     }
 
     close() {
