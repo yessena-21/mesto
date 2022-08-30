@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--<link rel="stylesheet" href="./pages/index.css" type="text/css" />-->
-  <title>Место</title>
+   <title>Место</title>
 </head>
 
 <body class="page">
@@ -27,7 +27,7 @@
     <section class="elements">
       <ul class="elements__photo-grid">
         <template id="elements-template">
-          <li class="elements__element">
+          <li class="elements__element" id=''>
             <img class="elements__image" src="#" alt="">
             <div class="elements__description">
               <h2 class="elements__title"></h2>
@@ -86,6 +86,21 @@
     </div>
   </div>
 
+  <div class="popup popup_type_edit-avatar">
+    <div class="popup__container">
+      <h3 class="popup__title">Обновить&nbsp;аватар</h3>
+      <form class="form" novalidate>
+        <label class="popup__field">
+          <input class="form__input form__input-link" id="form__input-link" type="url" name="link"
+            placeholder="Ссылка на картинку" required>
+          <span class="form__input-error form__input-link-error"></span>
+        </label>
+        <button class="form__save-button" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__exit-button" type="button"></button>
+    </div>
+  </div>
+
   <div class="popup popup_type_view-image">
     <div class="popup__image-container">
       <img class="popup__image" src="#" alt="">
@@ -93,7 +108,17 @@
       <button class="popup__exit-button" type="button"></button>
     </div>
   </div>
-
+  
+  <div class="popup popup_type_delete-confirm">
+    <div class="popup__container">
+      <h3 class="popup__title">Вы уверены?</h3>
+      <form class="form">
+        <button type="submit" class="form__save-button">Да</button>
+      </form>
+      <button class="popup__exit-button" type="button"></button>
+    </div>
+  </div>
+  <!--<script type="module" src="../src/pages/index.js"></script>-->
 </body>
 
 </html>

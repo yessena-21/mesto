@@ -4,6 +4,15 @@ export const popupAddCardSelector = '.popup_type_add-new-element';
 export const popupImageViewSelector = '.popup_type_view-image';
 export const profileNameSelector = '.profile__name';
 export const profileDescriptionSelector = '.profile__description';
+export const popupEditAvatarSelector = '.popup_type_edit-avatar';
+
+export const popupDeleteConfirmSelector = '.popup_type_delete-confirm';
+
+export const token = '9f07f35c-3f62-4d72-b050-c9f2d51971ca';
+export const baseURL = 'https://mesto.nomoreparties.co/v1/cohort-49/';
+export const popupEditAvatar = document.querySelector(popupEditAvatarSelector);
+export const buttonEditAvatar = document.querySelector('.avatar');
+export const formEditAvatar = popupEditAvatar.querySelector('.form');
 
 
 export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
