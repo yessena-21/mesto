@@ -1,15 +1,14 @@
 .profile__avatar {
-    grid-area: avatar;
-    max-width: 120px;
-    margin-right: 30px;
+    position: relative;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
-@media screen and (max-width: 1024px) {
-    .profile__avatar {
-        margin: 0 auto;
-    }
-}
 .profile__avatar::before {
     visibility: hidden;
     content: '';
@@ -38,4 +37,12 @@
 .profile__avatar:hover::before,
 .profile__avatar:hover::after {
     visibility: visible;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+    .profile__avatar {
+        margin: 0 auto;
+    }
 }

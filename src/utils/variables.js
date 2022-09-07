@@ -8,13 +8,13 @@ export const popupEditAvatarSelector = '.popup_type_edit-avatar';
 
 export const popupDeleteConfirmSelector = '.popup_type_delete-confirm';
 
-export const token = '9f07f35c-3f62-4d72-b050-c9f2d51971ca';
-export const baseURL = 'https://mesto.nomoreparties.co/v1/cohort-49/';
+// export const token = '9f07f35c-3f62-4d72-b050-c9f2d51971ca';
+// export const baseURL = 'https://mesto.nomoreparties.co/v1/cohort-49/';
 export const popupEditAvatar = document.querySelector(popupEditAvatarSelector);
 export const buttonEditAvatar = document.querySelector('.avatar');
 export const formEditAvatar = popupEditAvatar.querySelector('.form');
 
-
+export const avatarImage = document.querySelector('.profile__avatar-image');
 export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 export const buttonEditProfile = document.querySelector('.profile__button-edit');
 export const formEditProfile = popupEditProfile.querySelector('.form');
@@ -30,7 +30,7 @@ export const buttonAddCard = document.querySelector('.profile__button-add');
 export const formAddCard = popupAddCard.querySelector('.form');
 export const titleInput = formAddCard.querySelector('.form__input-title');
 export const linkInput = formAddCard.querySelector('.form__input-link');
-
+export const allSavedSubmits = document.querySelectorAll('.button__type_save');
 export const cardsContainer = document.querySelector('.elements__photo-grid');
 export const popupImageView = document.querySelector('.popup_type_view-image');
 export const popupImage = document.querySelector('.popup__image');
@@ -45,3 +45,9 @@ export const validationParams = {
     inputErrorClass: 'form__input_type-error',
     errorClass: 'form__input-error_active'
 };
+
+export const headers = {  
+authorization: '9f07f35c-3f62-4d72-b050-c9f2d51971ca',
+'Content-Type': 'application/json'
+};
+export const baseURL = 'https://mesto.nomoreparties.co/v1/cohort-49/';
