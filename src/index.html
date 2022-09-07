@@ -31,13 +31,13 @@
         <template id="elements-template">
           <li class="elements__element" id=''>
             <img class="elements__image" src="#" alt="">
-            <div class="elements__description"><div>
-              <h2 class="elements__title"></h2>
-              <div class="elements_like-group">
-                <button class="elements__like" type="button"></button>
-                <span class="elements__like-counter"></span>
-              </div>
-              <button aria-label="Delete" type="button" class="elements__delete"></button>
+            <div class="elements__description"></div>
+            <h2 class="elements__title"></h2>
+            <div class="elements_like-group">
+              <button class="elements__like" type="button"></button>
+              <span class="elements__like-counter"></span>
+            </div>
+            <button aria-label="Delete" type="button" class="elements__delete"></button>
           </li>
         </template>
       </ul>
@@ -95,8 +95,8 @@
       <h3 class="popup__title">Обновить&nbsp;аватар</h3>
       <form class="form" novalidate>
         <label class="popup__field">
-          <input class="form__input form__input-link"  type="url" name="avatar"
-            placeholder="Ссылка на картинку" required>
+          <input class="form__input form__input-link" type="url" name="avatar" placeholder="Ссылка на картинку"
+            required>
           <span class="form__input-error form__input-link-error"></span>
         </label>
         <button class="form__save-button button__type_save" type="submit">Сохранить</button>
