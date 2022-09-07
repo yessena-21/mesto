@@ -7,7 +7,8 @@
 .header{max-width:880px}@media screen and (max-width:1024px){.header{max-width:320px}}@media screen and (max-width:500px){.header{max-width:100%}}
 @media screen and (max-width:767px){.header__logo{height:24px;margin-left:27px;width:104px}}
 .profile{align-items:center;background-color:#000;display:grid;grid-template-areas:"avatar info btn";max-width:880px}@media screen and (max-width:1024px){.profile{grid-template-areas:"avatar""info""btn"}}
-.profile__avatar{border-radius:50%;grid-area:avatar;margin-right:30px;max-width:120px}@media screen and (max-width:1024px){.profile__avatar{margin:0 auto}}
+.profile__avatar{background-position:50%;background-repeat:no-repeat;background-size:cover;border-radius:50%;cursor:pointer;height:120px;position:relative;width:120px}.profile__avatar:before{background-image:url(93c771f5f8582261951d.png);content:"";height:26px;left:calc(50% - 13px);position:absolute;top:calc(50% - 13px);visibility:hidden;width:26px;z-index:1}.profile__avatar:after{background-color:rgba(0,0,0,.8);bottom:0;content:"";height:100%;left:0;position:absolute;right:0;top:0;visibility:hidden;width:100%}.profile__avatar:hover:after,.profile__avatar:hover:before{visibility:visible}@media screen and (max-width:1024px){.profile__avatar{margin:0 auto}}
+.profile__avatar-image{border-radius:50%;grid-area:avatar;margin-right:30px;max-width:120px}@media screen and (max-width:1024px){.profile__avatar-image{margin:0 auto}}
 .profile__info{display:grid;gap:16px 18px;grid-area:info;grid-template-areas:"name button-edit" "description description";margin-right:244px;max-width:336px}@media screen and (max-width:1024px){.profile__info{gap:14px 10px;grid-template-areas:"name button-edit""description description";justify-content:center;margin:0 auto;min-width:282px}}
 .profile__name{color:#fff;font-size:42px;font-style:normal;font-weight:500;line-height:48px;margin:0;max-width:294px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:880px){.profile__name{font-size:27px;line-height:33px;margin:24px 0 0;max-width:189px;min-height:26px;text-align:center}}
 .profile__description{color:#fff;font-size:18px;grid-area:description;line-height:22px;margin:0;max-width:336px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:1024px){.profile__description{text-align:center}}@media screen and (max-width:767px){.profile__description{font-size:14px;line-height:17px;max-width:282px}}
@@ -19,9 +20,12 @@
 .elements__image{border-radius:10px 10px 0 0;height:282px;-o-object-fit:cover;object-fit:cover;text-align:center;transition:all .4s ease;width:100%}
 .elements__title{color:#000;font-size:24px;font-weight:900;line-height:29px;margin:0;max-width:210px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .elements__description{align-items:center;display:flex;justify-content:space-between;padding:25px 21px 26px}
+.elements_like-group{align-items:center;display:flex;flex-direction:column;justify-content:space-between;min-height:37px;position:relative;right:0;top:-4px}
+.elements__like-counter{font-size:13px;font-weight:400;line-height:1.23}
 .elements__like{background:url(1ad06e85f169668a1f36.svg);background-color:#fff;background-position:50%;background-repeat:no-repeat;background-size:cover;border:none;cursor:pointer;height:19px;justify-content:center;padding:0;width:22px}.element__like-btn:hover{opacity:.5}
 .element__like_active{background:url(35948469632d0421d697.svg)}
-.elements__delete{background-color:initial;background-image:url(ce3b64935accf9b8212e.svg);background-position:50%;background-repeat:no-repeat;background-size:contain;border:none;cursor:pointer;height:19px;position:absolute;right:15px;top:18px;transition:.5s ease-out;width:18px}.elements__delete:hover{opacity:.5}
+.elements__delete{background-color:initial;background-image:url(ce3b64935accf9b8212e.svg);background-position:50%;background-repeat:no-repeat;background-size:contain;border:none;cursor:pointer;display:none;height:19px;position:absolute;right:15px;top:18px;transition:.5s ease-out;width:18px}.elements__delete:hover{opacity:.5}
+.elements__delete_show{display:block}
 .form{border:none;display:flex;flex-direction:column;padding-top:54px}
 .form__input-error_active{opacity:1}
 .form__input{align-items:center;background-color:transparent;border:none;border-bottom:1px solid rgba(0,0,0,.2);color:#000;font-size:14px;font-weight:400;line-height:17px;padding:0 0 13px;width:358px}@media screen and (max-width:767px){.form__input{width:238px}}
