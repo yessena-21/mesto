@@ -37,7 +37,7 @@ export default class Card {
     this._id = this._data._id;
     this._getView();
     this._setEventListeners();
-
+    this.setLike(this._data); 
     return this._card;
 
   }

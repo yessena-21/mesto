@@ -5,7 +5,7 @@ export const popupImageViewSelector = '.popup_type_view-image';
 export const profileNameSelector = '.profile__name';
 export const profileDescriptionSelector = '.profile__description';
 export const popupEditAvatarSelector = '.popup_type_edit-avatar';
-
+export const profileAvatarSelector = '.profile__avatar-image';
 export const popupDeleteConfirmSelector = '.popup_type_delete-confirm';
 
 // export const token = '9f07f35c-3f62-4d72-b050-c9f2d51971ca';
