@@ -8,12 +8,7 @@ export default class Api {
             method: 'GET',
             headers: this.headers
         })
-            .then((res) => {
-                if (res.ok)
-                    return res.json();
-
-                return Promise.reject(`Ошибка: $(res.status`)
-            })
+            .then(this._getResponseData)
     }
 
     setUserInfo(data) {
@@ -25,12 +20,7 @@ export default class Api {
                 about: data.about
             })
         })
-            .then((res) => {
-                if (res.ok)
-                    return res.json();
-
-                return Promise.reject(`Ошибка: $(res.status`)
-            })
+            .then(this._getResponseData)
     }
 
     getInitialCards() {
@@ -38,14 +28,7 @@ export default class Api {
             headers: this.headers
         })
 
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-
-            });
+            .then(this._getResponseData)
 
     }
 
@@ -55,85 +38,52 @@ export default class Api {
             method: 'PATCH',
             headers: this.headers,
             body: JSON.stringify(data)
-            })
-        
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
+        })
 
-
-            })
+            .then(this._getResponseData)
     }
 
     createCard(newCard) {
         return fetch(`${this.link}cards`, {
-                method: 'POST',
-                headers: this.headers,
-                body: JSON.stringify({
-                    name: newCard.name,
-                    link: newCard.link,
-                })
+            method: 'POST',
+            headers: this.headers,
+            body: JSON.stringify({
+                name: newCard.name,
+                link: newCard.link,
             })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-
-
-            })
+        })
+            .then(this._getResponseData)
     }
 
     deleteCard(id) {
         return fetch(`${this.link}cards/${id}`, {
-                method: 'DELETE',
-                headers: this.headers,
-            })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-
-
-            })
+            method: 'DELETE',
+            headers: this.headers,
+        })
+            .then(this._getResponseData)
     }
 
     likeCard(id) {
         return fetch(`${this.link}cards/likes/${id}`, {
-                method: 'PUT',
-                headers: this.headers,
-            })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-
-
-            })
+            method: 'PUT',
+            headers: this.headers,
+        })
+            .then(this._getResponseData)
     }
 
     dislikeCard(id) {
         return fetch(`${this.link}cards/likes/${id}`, {
-                method: 'DELETE',
-                headers: this.headers,
-            })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
+            method: 'DELETE',
+            headers: this.headers,
+        })
+            .then(this._getResponseData)
+    }
 
-
-            })
+    _getResponseData(res) {
+        if (!res.ok) {
+            return Promise.reject(`Ошибка: ${res.status}`);
+        }
+        return res.json();
     }
 
 }
